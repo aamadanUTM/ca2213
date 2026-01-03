@@ -1,7 +1,0 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-# Exclude local env files from git archives
-.env export-ignore
-.env.local export-ignore
-
-node_modules/ export-ignore
