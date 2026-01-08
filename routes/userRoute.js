@@ -5,12 +5,21 @@ import {
   getUserById,
   login,
 } from "../controller/userController.js";
+import {
+  authMiddleware,
+  autherizationMiddleware,
+} from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
 // POST /muser
-router.post("/muser", createUser);
-router.get("/musers", getAllUsers);
-router.get("/muser/:id", getUserById);
+router.post(
+  "/muser",
+  authMiddleware,
+  autherizationMiddleware(["admin"]),
+  createUser
+);
+router.get("/musers", authMiddleware, getAllUsers);
+router.get("/muser/:id", authMiddleware, getUserById);
 router.post("/mlogin", login);
 export default router;
